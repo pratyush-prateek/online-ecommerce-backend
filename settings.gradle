@@ -1,0 +1,6 @@
+include ':microservices:order-service'
+include ':microservices:product-service'
+include ':microservices:registration-service'
+include ':api'
+include ':util'
+

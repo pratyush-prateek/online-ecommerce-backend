@@ -2,6 +2,7 @@ package com.ecommerce.core.product.services;
 
 import com.ecommerce.api.core.category.Category;
 import com.ecommerce.api.core.product.Product;
+import com.ecommerce.api.core.product.ProductRepository;
 import com.ecommerce.api.core.product.ProductService;
 import com.ecommerce.util.http.ServiceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ProductServiceImpl implements ProductService {
+    @Autowired
+    private ProductRepository productRepository;
     private final ServiceUtil serviceUtil;
 
     @Autowired
@@ -21,11 +25,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        return new ArrayList<>();
+        return productRepository.findAll();
     }
 
     @Override
-    public Product getProduct(int productId) {
-        return new Product(2, "Cello", 4.5, new Category(45, "Pens"));
+    public Product getProduct(String productId) {
+        Optional<Product> product = productRepository.findById(productId);
+        return product.get();
     }
 }

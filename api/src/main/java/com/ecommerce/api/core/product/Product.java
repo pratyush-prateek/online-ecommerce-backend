@@ -1,28 +1,27 @@
 package com.ecommerce.api.core.product;
 
 import com.ecommerce.api.core.category.Category;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document("products")
 public class Product {
-    private final int productId;
-    private final String productName;
-    private final double cost;
-    private final Category category;
 
-    public Product() {
-        this.productId = 0;
-        this.productName = null;
-        this.cost = 0.0;
-        this.category = null;
-    }
+    @Id
+    private String productId;
+    private String productName;
+    private double cost;
+    private String categoryId;
 
-    public Product(int productId, String productName, double cost, Category category) {
+    public Product(String productId, String productName, double cost, String categoryId) {
+        super();
         this.productId = productId;
         this.productName = productName;
         this.cost = cost;
-        this.category = category;
+        this.categoryId = categoryId;
     }
 
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
 
@@ -34,7 +33,7 @@ public class Product {
         return cost;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCategoryId() {
+        return categoryId;
     }
 }

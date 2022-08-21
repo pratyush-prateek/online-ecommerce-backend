@@ -1,20 +1,21 @@
 package com.ecommerce.api.core.category;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("categories")
 public class Category {
-    private final int categoryId;
-    private final String categoryName;
 
-    public Category() {
-        this.categoryId = 0;
-        this.categoryName = null;
-    }
+    @Id
+    private String categoryId;
+    private String categoryName;
 
-    public Category(int categoryId, String categoryName) {
+    public Category(String categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }
 
-    public int getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 

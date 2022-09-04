@@ -1,7 +1,7 @@
 package com.ecommerce.api.core.product;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface ProductService {
     * @returns list of all products
     * */
     @GetMapping(value = "/products", produces="application/json")
-    List<Product> getAllProducts();
+    ResponseEntity<List<Product>> getAllProducts(@RequestParam(value="categoryId", required=false)String categoryId);
 
     /*
     * Sample usage: curl $HOST:$PORT/products/{productId}
@@ -21,5 +21,19 @@ public interface ProductService {
     * */
 
     @GetMapping(value = "/products/{productId}", produces="application/json")
-    Product getProduct(@PathVariable String productId);
+    ResponseEntity<Product> getProduct(@PathVariable String productId);
+
+    /*
+    * Sample usage: curl $HOST:$PORT/products
+    * @body - Product
+    * @returns - Product with ID
+    * */
+    @PostMapping(value = "/products", produces="application/json")
+    ResponseEntity<Product> createProduct(@RequestBody Product product);
+
+    /*
+    * Delete a product
+    * */
+    @DeleteMapping(value = "/products/{productId}")
+    ResponseEntity deleteProduct(@PathVariable String productId);
 }

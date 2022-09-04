@@ -13,27 +13,35 @@ public class Product {
     private double cost;
     private String categoryId;
 
-    public Product(String productId, String productName, double cost, String categoryId) {
-        super();
-        this.productId = productId;
-        this.productName = productName;
-        this.cost = cost;
-        this.categoryId = categoryId;
-    }
-
     public String getProductId() {
         return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {
         return productName;
     }
 
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
     public double getCost() {
         return cost;
     }
 
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
     public String getCategoryId() {
         return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 }

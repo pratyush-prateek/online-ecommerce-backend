@@ -1,5 +1,6 @@
 package com.ecommerce.api.core.order;
 
+import com.ecommerce.api.core.order.models.CancellationRequest;
 import com.ecommerce.api.core.order.models.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,6 @@ public interface OrderService {
     /*
     * Cancel order
     * */
-    @PostMapping(value = "/orders/{orderId}", produces="application/json")
-    ResponseEntity cancelOrder();
+    @PostMapping(value = "/orders/cancellation", produces="application/json")
+    ResponseEntity cancelOrder(@RequestBody CancellationRequest cancellationRequest);
 }

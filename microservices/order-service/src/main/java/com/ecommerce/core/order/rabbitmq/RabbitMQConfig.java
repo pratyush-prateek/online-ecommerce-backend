@@ -16,9 +16,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
-    static final String TOPIC_EXCHANGE_NAME = "orders-publish-topic";
-    static final String QUEUE_NAME = "orders-pipeline";
-    static final String ROUTING_KEY = "orders-routing-key";
+    static final String ORDERS_TOPIC_EXCHANGE_NAME = "orders-topic";
+    static final String ORDERS_QUEUE_NAME = "orders-pipeline";
+    static final String ORDERS_ROUTING_KEY = "orders-routing-key";
+    static final String CANCELLATION_QUEUE_NAME = "cancellation-pipeline";
+    static final String CANCELLATION_REQ_ROUTING_KEY = "cancellation-req-routing-key";
 
     @Value("${spring.rabbitmq.host}")
     private String host;
@@ -33,13 +35,16 @@ public class RabbitMQConfig {
     private String password;
 
     @Bean
-    public Queue queue() {
-        return new Queue(QUEUE_NAME);
+    public Queue ordersQueue() {
+        return new Queue(ORDERS_QUEUE_NAME, true);
     }
 
     @Bean
-    public TopicExchange topicExchange() {
-        return new TopicExchange(TOPIC_EXCHANGE_NAME);
+    public Queue cancellationRequestQueue() {return new Queue(CANCELLATION_QUEUE_NAME, true); }
+
+    @Bean
+    public TopicExchange ordersTopicExchange() {
+        return new TopicExchange(ORDERS_TOPIC_EXCHANGE_NAME);
     }
 
     @Bean
@@ -66,11 +71,19 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Binding binding(Queue queue, TopicExchange topicExchange) {
+    public Binding ordersBinding(TopicExchange topicExchange) {
         return BindingBuilder
-                .bind(queue)
+                .bind(ordersQueue())
                 .to(topicExchange)
-                .with(ROUTING_KEY);
+                .with(ORDERS_ROUTING_KEY);
+    }
+
+    @Bean
+    public Binding cancellationRequestBinding(TopicExchange topicExchange) {
+        return BindingBuilder
+                .bind(cancellationRequestQueue())
+                .to(topicExchange)
+                .with(CANCELLATION_REQ_ROUTING_KEY);
     }
 
     @Bean

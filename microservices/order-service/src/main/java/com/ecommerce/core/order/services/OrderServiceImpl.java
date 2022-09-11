@@ -1,6 +1,7 @@
 package com.ecommerce.core.order.services;
 
 import com.ecommerce.api.core.order.OrderService;
+import com.ecommerce.api.core.order.models.CancellationRequest;
 import com.ecommerce.api.core.order.models.Order;
 import com.ecommerce.core.order.rabbitmq.RabbitMQSender;
 import org.slf4j.Logger;
@@ -20,16 +21,19 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public ResponseEntity placeOrder(Order order) {
-        LOG.info(order.getProductId());
         if(order == null)
             return ResponseEntity.badRequest().build();
 
-        this.rabbitMQSender.send(order);
-        return ResponseEntity.ok(order);
+        this.rabbitMQSender.enqueueOrder(order);
+        return ResponseEntity.ok().build();
     }
 
     @Override
-    public ResponseEntity cancelOrder() {
-        return null;
+    public ResponseEntity cancelOrder(CancellationRequest cancellationRequest) {
+        if(cancellationRequest == null || cancellationRequest.getOrderId() == null)
+            return ResponseEntity.badRequest().build();
+
+        this.rabbitMQSender.enqueueCancellationRequest(cancellationRequest);
+        return ResponseEntity.ok().build();
     }
 }

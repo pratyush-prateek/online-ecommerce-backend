@@ -15,6 +15,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 public class ProductServiceApplication {
 	private static final Logger LOG = LoggerFactory.getLogger(ProductServiceApplication.class);
 	public static void main(String[] args) {
+		//VM arguements for starting product service - -Djdk.tls.client.protocols=TLSv1.2
 		ConfigurableApplicationContext context = SpringApplication.run(ProductServiceApplication.class, args);
 		String mongoDBHost = context.getEnvironment().getProperty("spring.data.mongodb.host");
 		String mongoDBPort = context.getEnvironment().getProperty("spring.data.mongodb.port");

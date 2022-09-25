@@ -19,7 +19,7 @@ public class ProductServiceApplication {
 		ConfigurableApplicationContext context = SpringApplication.run(ProductServiceApplication.class, args);
 		String mongoDBHost = context.getEnvironment().getProperty("spring.data.mongodb.host");
 		String mongoDBPort = context.getEnvironment().getProperty("spring.data.mongodb.port");
-		LOG.info("Connected to MongoDB " + mongoDBHost + ":" + mongoDBPort);
+		LOG.info("Connected to MongoDB products" + mongoDBHost + ":" + mongoDBPort);
 	}
 
 }

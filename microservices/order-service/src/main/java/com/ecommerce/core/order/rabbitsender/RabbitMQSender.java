@@ -1,7 +1,8 @@
-package com.ecommerce.core.order.rabbitmq;
+package com.ecommerce.core.order.rabbitsender;
 
 import com.ecommerce.api.core.order.models.CancellationRequest;
 import com.ecommerce.api.core.order.models.Order;
+import com.ecommerce.core.rabbitmq.RabbitMQConfig;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

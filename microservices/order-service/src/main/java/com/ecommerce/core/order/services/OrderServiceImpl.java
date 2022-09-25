@@ -3,7 +3,7 @@ package com.ecommerce.core.order.services;
 import com.ecommerce.api.core.order.OrderService;
 import com.ecommerce.api.core.order.models.CancellationRequest;
 import com.ecommerce.api.core.order.models.Order;
-import com.ecommerce.core.order.rabbitmq.RabbitMQSender;
+import com.ecommerce.core.order.rabbitsender.RabbitMQSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

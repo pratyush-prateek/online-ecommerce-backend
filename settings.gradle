@@ -1,7 +1,8 @@
 include ':microservices:order-service'
 include ':microservices:product-service'
 include ':microservices:registration-service'
+include ':microservices:orders-consumer'
 include ':api'
 include ':util'
-
+include ':rabbitmq'
 

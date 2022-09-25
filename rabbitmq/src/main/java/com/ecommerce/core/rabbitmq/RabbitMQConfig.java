@@ -1,4 +1,4 @@
-package com.ecommerce.core.order.rabbitmq;
+package com.ecommerce.core.rabbitmq;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -16,11 +16,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
-    static final String ORDERS_TOPIC_EXCHANGE_NAME = "orders-topic";
-    static final String ORDERS_QUEUE_NAME = "orders-pipeline";
-    static final String ORDERS_ROUTING_KEY = "orders-routing-key";
-    static final String CANCELLATION_QUEUE_NAME = "cancellation-pipeline";
-    static final String CANCELLATION_REQ_ROUTING_KEY = "cancellation-req-routing-key";
+    public static final String ORDERS_TOPIC_EXCHANGE_NAME = "orders-topic";
+    public static final String ORDERS_QUEUE_NAME = "orders-pipeline";
+    public static final String ORDERS_ROUTING_KEY = "orders-routing-key";
+    public static final String CANCELLATION_QUEUE_NAME = "cancellation-pipeline";
+    public static final String CANCELLATION_REQ_ROUTING_KEY = "cancellation-req-routing-key";
 
     @Value("${spring.rabbitmq.host}")
     private String host;

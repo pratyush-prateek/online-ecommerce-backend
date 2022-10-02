@@ -1,0 +1,25 @@
+version: "1.0"
+services:
+  order-service:
+    build: microservices/order-service
+    ports:
+    - "7001:7001"
+    networks:
+      - ecommerce-backend-network
+
+  product-service:
+    build: microservices/product-service
+    ports:
+    - "7003:7003"
+    networks:
+      - ecommerce-backend-network
+
+  orders-consumer:
+    build: microservices/orders-consumer
+    ports:
+      - "7002:7002"
+    networks:
+      - ecommerce-backend-network
+
+networks:
+  ecommerce-backend-network:

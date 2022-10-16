@@ -5,4 +5,5 @@ include ':microservices:orders-consumer'
 include ':api'
 include ':util'
 include ':rabbitmq'
+include ':service-discovery'
 

@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductService {
             return ResponseEntity.ok(result);
         }
         catch (IllegalArgumentException e) {
-            LOG.warn("Product with id " + productId + " does not exist");
+            LOG.warn("Product with id cannot be null");
             throw e;
         }
     }

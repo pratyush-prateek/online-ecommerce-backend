@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication(exclude = {
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 		RabbitAutoConfiguration.class,
 })
 @ComponentScan("com.ecommerce")
+@EnableEurekaClient
 public class OrderServiceApplication {
 	private static final Logger LOG = LoggerFactory.getLogger(OrderServiceApplication.class);
 	public static void main(String[] args) {

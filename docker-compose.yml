@@ -1,11 +1,23 @@
 version: "1.0"
 services:
+  service-discovery:
+    build: service-discovery
+    ports:
+    - "7004:7004"
+    networks:
+      - ecommerce-backend-network
+    environment:
+      EUREKA_URI: http://service-discovery:7004/eureka
+
   order-service:
     build: microservices/order-service
     ports:
     - "7001:7001"
     networks:
       - ecommerce-backend-network
+    environment:
+      EUREKA_URI: http://service-discovery:7004/eureka
+      PRODUCT_SERVICE_APPLICATION_NAME: product-service
 
   product-service:
     build: microservices/product-service
@@ -13,6 +25,8 @@ services:
     - "7003:7003"
     networks:
       - ecommerce-backend-network
+    environment:
+      EUREKA_URI: http://service-discovery:7004/eureka
 
   orders-consumer:
     build: microservices/orders-consumer
